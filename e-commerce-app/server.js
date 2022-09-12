@@ -11,6 +11,7 @@ const typeDefs = gql`
         noOfAnimals: Int
         price: Float
         isLearning: Boolean
+        listOfString: [String!]
     }
 `;
 
@@ -28,6 +29,9 @@ const resolvers = {
         },
         isLearning: () => {
             return true;
+        },
+        listOfString: () => {
+            return ["s1", "s2", "s3"]
         }
     },
 };
