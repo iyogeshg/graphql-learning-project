@@ -1,4 +1,4 @@
-const { products, categories } = require("../db");
+
 
 exports.Query = {
     hello: () => {
@@ -16,21 +16,18 @@ exports.Query = {
     listOfString: () => {
         return ["s1", "s2", "s3"];
     },
-    products: () => {
+    products: (parent, args, { products}) => {
         return products;
     },
-    product: (parent, args, context) => {
-        const productId = args.id;
-
-        const product = products.find( (product) => product.id === productId);
+    product: (parent, { id }, { products}) => {
+        const product = products.find( (product) => product.id === id);
         if(!product) return null;
         return product;
     },
-    categories: () => {
+    categories: (parent, args, { categories }) => {
         return categories;
     },
-    category: (parent, args, context) => {
-        const { id } = args; // de-structure
+    category: (parent, { id }, { categories }) => {
         return categories.find( (category) => category.id === id);
     }
 }

@@ -1,8 +1,7 @@
-const { categories } = require("../db");
 
+//destructed the parent to get categoryID and context to get categories
 exports.Product = {
-    category: (parent, args, context) => {
-        const categoryId = parent.categoryId;
+    category: ({ categoryId }, args, { categories }) => {
         return categories.find(category => category.id === categoryId);
     }
 }

@@ -4,6 +4,10 @@ const { Query } = require( "./resolvers/Query");
 const { Category } = require( "./resolvers/Category");
 const { Product } = require( "./resolvers/Product");
 
+// passing db data to context to get data by using context in resolver
+const { categories, products } = require("./db");
+
+
 
 const server = new ApolloServer({
     typeDefs,
@@ -12,6 +16,10 @@ const server = new ApolloServer({
         Category,
         Product,
     },
+    context: {
+        products,
+        categories,
+    }
 });
 
 server.listen().then(({ url }) => {
