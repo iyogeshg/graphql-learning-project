@@ -48,5 +48,6 @@ exports.typeDefs = gql`
 
     input ProductsFiterInput {
         onSale: Boolean
+        avgRating: Int
     }
 `;
