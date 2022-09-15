@@ -16,8 +16,18 @@ exports.Query = {
     listOfString: () => {
         return ["s1", "s2", "s3"];
     },
-    products: (parent, args, { products}) => {
-        return products;
+    products: (parent, { filter }, { products}) => {
+        let filteredProducts = products;
+
+        if(filter){
+            // if(filter.onSale === true){
+            //     filteredProducts = filteredProducts.filter(product => {
+            //         return product.onSale;
+            //     });
+            // }
+            filteredProducts = filteredProducts.filter(product => product.onSale === filter.onSale);    
+        }
+        return filteredProducts;
     },
     product: (parent, { id }, { products}) => {
         const product = products.find( (product) => product.id === id);
